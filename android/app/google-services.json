@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "73105873555",
+    "project_id": "smautomation-58808",
+    "storage_bucket": "smautomation-58808.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73105873555:android:6e7e4572411dc58df10b66",
+        "android_client_info": {
+          "package_name": "com.example.smautomation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73105873555-b2usvqshee490k666s1arp8e8cccaqtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6PN_5EZcxanYjSTf1n9J1TY9JOgvP5fQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73105873555-b2usvqshee490k666s1arp8e8cccaqtu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
