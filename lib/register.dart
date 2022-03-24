@@ -45,15 +45,13 @@ class _RegisterPageState extends State<RegisterPage> {
             Container(
                 alignment: Alignment.center,
                 width: size.width,
-                child:
-                    Field(size, "Enter Phone no", Icons.phone, false, _phone)),
-            const SizedBox(
-              height: 23.0,
-            ),
-            Container(
-                alignment: Alignment.center,
-                width: size.width,
-                child: Field(size, "Enter Email", Icons.email, false, _email)),
+                child: Field(
+                  size,
+                  "Enter Phone no",
+                  Icons.phone,
+                  false,
+                  _phone,
+                )),
             const SizedBox(
               height: 23.0,
             ),
@@ -61,7 +59,26 @@ class _RegisterPageState extends State<RegisterPage> {
                 alignment: Alignment.center,
                 width: size.width,
                 child: Field(
-                    size, "Enter Password", Icons.lock, false, _password)),
+                  size,
+                  "Enter Email",
+                  Icons.email,
+                  false,
+                  _email,
+                )),
+            const SizedBox(
+              height: 23.0,
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: size.width,
+              child: Field(
+                size,
+                "Enter Password",
+                Icons.lock,
+                false,
+                _password,
+              ),
+            ),
             const SizedBox(
               height: 23.0,
             ),
@@ -84,6 +101,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         });
                         print("Account created successfully");
                         ToastMessage("Account created Successfully");
+                      } else if (!_password.text.contains(
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')) {
+                        print("Password should be at least 6 Characters"
+                            "\nPassword must contain special symbols, numbers, alphabets");
+                        ToastMessage("Password should be at least 6 Characters"
+                            "\nPassword must contain special symbols, numbers, alphabets");
                       } else {
                         print("Account creation failed");
                         ToastMessage("Account Creation Failed");
@@ -119,3 +142,17 @@ void ToastMessage(String message) => Fluttertoast.showToast(
     backgroundColor: Colors.grey,
     textColor: Colors.white,
     fontSize: 16.0);
+
+String? validatePassword(String value) {
+  RegExp regex =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+  if (value.isEmpty) {
+    return 'Please enter password';
+  } else {
+    if (!regex.hasMatch(value)) {
+      return 'Enter valid password';
+    } else {
+      return null;
+    }
+  }
+}
