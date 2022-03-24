@@ -17,68 +17,80 @@ class _LoginPageState extends State<LoginPage> {
     final TextEditingController _email = TextEditingController();
     final TextEditingController _password = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login Page"),
-      ),
-      body: Column(
-        children: <Widget>[
-          const Padding(padding: EdgeInsets.all(30)),
-          const Text("Welcome",
-              style: TextStyle(color: Colors.blue, fontSize: 25.0)),
-          const SizedBox(
-            height: 50.0,
-          ),
-          Container(
-              alignment: Alignment.center,
-              width: size.width,
-              child: Field(size, "Enter Email", Icons.email, false, _email)),
-          Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(
-                alignment: Alignment.center,
-                width: size.width,
-                child:
-                    Field(size, "Enter Password", Icons.lock, true, _password),
-              )),
-          const SizedBox(
-            height: 40.0,
-          ),
-          FlatButton(
-              color: Colors.blue,
-              onPressed: () {
-                if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
-                  LoginFunction(_email.text, _password.text).then((user) {
-                    if (user != null) {
-                      print("Login Sucessfull");
-                      ToastMessage("Login successfull");
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => HomeScreen()));
+        appBar: AppBar(
+          title: const Text("Login Page"),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const Padding(padding: EdgeInsets.all(30)),
+              const Text("Welcome",
+                  style: TextStyle(color: Colors.blue, fontSize: 25.0)),
+              const SizedBox(
+                height: 50.0,
+              ),
+              Container(
+                  alignment: Alignment.center,
+                  width: size.width,
+                  child: Field(
+                    size,
+                    "Enter Email",
+                    Icons.email,
+                    false,
+                    _email,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: size.width,
+                    child: Field(
+                      size,
+                      "Enter Password",
+                      Icons.lock,
+                      true,
+                      _password,
+                    ),
+                  )),
+              const SizedBox(
+                height: 40.0,
+              ),
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
+                      LoginFunction(_email.text, _password.text).then((user) {
+                        if (user != null) {
+                          print("Login Sucessfull");
+                          ToastMessage("Login successfull");
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => HomeScreen()));
+                        } else {
+                          print("Login Failed");
+                          ToastMessage("Field Should not be empty");
+                        }
+                      });
                     } else {
-                      print("Login Failed");
-                      ToastMessage("Field Should not be empty");
+                      ToastMessage("Please fill correctly");
+                      print("Please fill form correctly");
                     }
-                  });
-                } else {
-                  ToastMessage("Please fill correctly");
-                  print("Please fill form correctly");
-                }
-              },
-              child: const Text("Login",
-                  style: TextStyle(fontSize: 20.0, color: Colors.white))),
-          const SizedBox(
-            height: 25.0,
+                  },
+                  child: const Text("Login",
+                      style: TextStyle(fontSize: 20.0, color: Colors.white))),
+              const SizedBox(
+                height: 20.0,
+              ),
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const RegisterPage())),
+                child: const Text(
+                  "Not have an account? Create here",
+                  style: TextStyle(fontSize: 13.0, color: Colors.blue),
+                ),
+              )
+            ],
           ),
-          GestureDetector(
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const RegisterPage())),
-            child: const Text(
-              "Not have an account? Create here",
-              style: TextStyle(fontSize: 13.0, color: Colors.blue),
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }
 
